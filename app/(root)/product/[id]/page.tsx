@@ -3,11 +3,13 @@ import { Container } from '@/components/shared/container'
 import { prisma } from '@/prisma/prisma-client'
 import { notFound } from 'next/navigation'
 
+interface ProductPageProps {
+	params: { id: string }
+}
+
 export default async function ProductPage({
 	params: { id },
-}: {
-	params: { id: string }
-}) {
+}: ProductPageProps) {
 	const product = await prisma.product.findFirst({
 		where: { id: Number(id) },
 		include: {
