@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export async function PATCH(
 	req: NextRequest,
-	context: { params: { id: string } }
+	context: { params: Record<string, string> }
 ) {
 	try {
 		const id = Number(context.params.id)
@@ -48,7 +48,7 @@ export async function PATCH(
 
 export async function DELETE(
 	req: NextRequest,
-	context: { params: { id: string } }
+	context: { params: Record<string, string> }
 ) {
 	try {
 		const id = Number(context.params.id)
