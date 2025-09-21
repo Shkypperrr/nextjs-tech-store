@@ -1,12 +1,12 @@
 import React from 'react'
-import { formLoginSchema, TFormLoginValues } from './schemas'
+import { FormProvider, useForm } from 'react-hook-form'
+import { TFormLoginValues, formLoginSchema } from './schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Title } from '@/components/shared/title'
-import { FormInput } from '@/components/shared/form/from-input'
+import { Title } from '../../../title'
+import { FormInput } from '../../../form'
 import toast from 'react-hot-toast'
 import { signIn } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
-import { FormProvider, useForm } from 'react-hook-form'
 
 interface Props {
 	onClose?: VoidFunction
