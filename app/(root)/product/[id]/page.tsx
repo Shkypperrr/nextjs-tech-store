@@ -1,15 +1,11 @@
-import { ProductForm, ProductImage } from '@/components/shared'
-
+import { ProductForm } from '@/components/shared'
 import { prisma } from '@/prisma/prisma-client'
 import { notFound } from 'next/navigation'
 
-type PageProps = {
-	params: {
-		id: string
-	}
-}
-
-export default async function ProductPage({ params: { id } }: PageProps) {
+export default async function ProductPage(props: {
+	params: Promise<{ id: string }>
+}) {
+	const { id } = await props.params
 	const product = await prisma.product.findFirst({
 		where: { id: Number(id) },
 		include: {
