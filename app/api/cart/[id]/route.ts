@@ -4,10 +4,10 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export async function PATCH(
 	req: NextRequest,
-	{ params }: { params: { id: string } }
+	context: { params: { id: string } }
 ) {
 	try {
-		const id = Number(params.id)
+		const id = Number(context.params.id)
 		const data = (await req.json()) as { quantity: number }
 		const token = req.cookies.get('cartToken')?.value
 
@@ -48,10 +48,10 @@ export async function PATCH(
 
 export async function DELETE(
 	req: NextRequest,
-	{ params }: { params: { id: string } }
+	context: { params: { id: string } }
 ) {
 	try {
-		const id = Number(params.id)
+		const id = Number(context.params.id)
 		const token = req.cookies.get('cartToken')?.value
 
 		if (!token) {
@@ -70,7 +70,7 @@ export async function DELETE(
 
 		await prisma.cartItem.delete({
 			where: {
-				id: Number(params.id),
+				id: Number(id),
 			},
 		})
 
